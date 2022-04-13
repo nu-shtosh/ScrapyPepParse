@@ -24,19 +24,15 @@ class PepParsePipeline:
         archive_path = downloads_dir / filename
         with open(archive_path, mode='w', encoding='utf-8') as file:
             header = ['STATUS', 'AMOUNT']
-            file_writer = csv.DictWriter(
+            pep_table = self.statuses.items()
+            total = ['TOTAL', sum(self.statuses.values())]
+            file_writer = csv.writer(
                 file,
-                delimiter=',',
-                lineterminator='\n',
                 dialect='unix',
-                quoting=csv.QUOTE_MINIMAL,
-                fieldnames=header,
+                quoting=csv.QUOTE_MINIMAL
             )
-            file_writer.writeheader()
-            for key, value in self.statuses.items():
-                file_writer.writerow(
-                    {'STATUS': key, 'AMOUNT': value}
-                )
-            file_writer.writerow(
-                {'STATUS': 'TOTAL', 'AMOUNT': sum(self.statuses.values())}
-            )
+            file_writer.writerows([
+                header,
+                *pep_table,
+                total,
+            ])
