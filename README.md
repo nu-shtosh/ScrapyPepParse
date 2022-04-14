@@ -6,21 +6,25 @@
 
 В качестве стартовой ссылки установлена https://peps.python.org/.
 
-Как запустить проект:
-Клонировать репозиторий и перейти в него в командной строке:
+# Как запустить проект:
+## Клонировать репозиторий и перейти в него в командной строке:
 ```
 git clone https://github.com/nu-shtosh/ScrapyPepParse
 ```
 ```
 cd api_yambd
 ```
-Cоздать и активировать виртуальное окружение:
+## Cоздать и активировать виртуальное окружение:
 ```
 python3 -m venv env
 source env/bin/activate
 ```
-Установить зависимости из файла requirements.txt:
+## Установить зависимости из файла requirements.txt:
 ```
 python3 -m pip install --upgrade pip
 pip install -r requirements.txt
+```
+## Запустите парсер:
+```
+scrapy crawl pep
 ```
